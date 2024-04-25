@@ -1,7 +1,7 @@
 package dev.dhanush.EcomProductService.Client;
 
-import dev.dhanush.EcomProductService.DTO.FakeStoreCartResponseDTO;
-import dev.dhanush.EcomProductService.DTO.FakeStoreProductResponseDTO;
+import dev.dhanush.EcomProductService.DTO.fakeStoreDTOs.FakeStoreCartResponseDTO;
+import dev.dhanush.EcomProductService.DTO.fakeStoreDTOs.FakeStoreProductResponseDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.client.RestTemplateBuilder;
@@ -49,3 +49,12 @@ public class FakeStoreClient {
         return List.of(cartResponse.getBody());
     }
 }
+
+/*
+restTemplate.getForEntity(fakeStoreGetAllProductURL, FakeStoreProductResponseDTO[].class);
+getForEntity(urlForAPI, the object in which you want the response)
+ */
+
+/*
+https://fakestoreapi.com/carts?userId=1 -> get cart by userId, and userId is a query param
+ */
