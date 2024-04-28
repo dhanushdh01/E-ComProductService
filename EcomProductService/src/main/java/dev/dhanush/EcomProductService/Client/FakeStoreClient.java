@@ -12,10 +12,9 @@ import org.springframework.web.client.RestTemplate;
 import java.util.List;
 @Component
 public class FakeStoreClient {
-
     @Autowired
     private RestTemplateBuilder restTemplateBuilder;
-    @Value("${fakestore.api.base.url}")
+    @Value("${fakestore.api.base.url}") // this annotation will, fetch the value from app properties and inject that value to this variable
     private String fakeStoreAPIBaseUrl;
     @Value("${fakestore.api.product.path}")
     private String fakeStoreAPIProductPath;
@@ -25,7 +24,8 @@ public class FakeStoreClient {
     public List<FakeStoreProductResponseDTO> getAllProducts(){
         String fakeStoreGetAllProductURL = fakeStoreAPIBaseUrl.concat(fakeStoreAPIProductPath);
         RestTemplate restTemplate = restTemplateBuilder.build();
-        ResponseEntity<FakeStoreProductResponseDTO[]> productResponseList = restTemplate.getForEntity(fakeStoreGetAllProductURL, FakeStoreProductResponseDTO[].class);
+        ResponseEntity<FakeStoreProductResponseDTO[]> productResponseList =
+                restTemplate.getForEntity(fakeStoreGetAllProductURL, FakeStoreProductResponseDTO[].class);
         return List.of(productResponseList.getBody());
     }
 

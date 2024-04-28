@@ -2,13 +2,13 @@ package dev.dhanush.EcomProductService.Service;
 
 import dev.dhanush.EcomProductService.DTO.CreateProductRequestDTO;
 import dev.dhanush.EcomProductService.DTO.ProductResponseDTO;
+import dev.dhanush.EcomProductService.Entity.Category;
 import dev.dhanush.EcomProductService.Entity.Product;
 import dev.dhanush.EcomProductService.Exception.CategoryNotFoundException;
 import dev.dhanush.EcomProductService.Exception.ProductNotFoundException;
 import dev.dhanush.EcomProductService.Mapper.ProductEntityDTOMapper;
 import dev.dhanush.EcomProductService.Repository.CategoryRepository;
 import dev.dhanush.EcomProductService.Repository.ProductRepository;
-import jdk.jfr.Category;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +18,7 @@ import java.util.UUID;
 
 @Service("productService")
 public class ProductServiceImpl implements ProductService{
+
     @Autowired
     private ProductRepository productRepository;
 
@@ -57,6 +58,10 @@ public class ProductServiceImpl implements ProductService{
                 () -> new CategoryNotFoundException("Category not found for id : " + productRequestDTO.getCategoryId()));
         product.setCategory(savedCategory);
         product = productRepository.save(product);
+        List<Product> categoryProducts = savedCategory.getProducts();
+        categoryProducts.add(product);
+        savedCategory.setProducts(categoryProducts);
+        categoryRepository.save(savedCategory);
         return ProductEntityDTOMapper.convertProductEntityToProductResponseDTO(product);
     }
 

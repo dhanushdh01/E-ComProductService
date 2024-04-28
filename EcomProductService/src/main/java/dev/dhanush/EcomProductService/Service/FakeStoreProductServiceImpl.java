@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service("fakeStoreProductService")
-public class FakeStoreProductServiceImpl{
+public class FakeStoreProductServiceImpl {
 
     @Autowired
     private FakeStoreClient fakeStoreClient;
@@ -31,7 +31,6 @@ public class FakeStoreProductServiceImpl{
         }
         return fakeStoreProductResponseDTO;
     }
-
 
     public Product createProduct(Product product) {
         return null;

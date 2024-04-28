@@ -10,7 +10,10 @@ public class FakeStoreProductRatingDTO {
     private int count;
 }
 
+
 /*
-        "rate" : 4.0,
-        "count" : 69
+{
+            "rate": 3.9,
+            "count": 120
+        }
  */

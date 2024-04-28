@@ -18,16 +18,14 @@ public class ProductController {
 
     @Autowired
     @Qualifier("productService")
-    private ProductService productService; //field injection
+    private ProductService productService; // field injection
 
-    // to get all products
     @GetMapping
     public ResponseEntity<List<ProductResponseDTO>> getAllProducts(){
         List<ProductResponseDTO> products = productService.getAllProducts();
         return ResponseEntity.ok(products);
     }
 
-    // to get a specific product by id
     @GetMapping("/{id}")
     public ResponseEntity<ProductResponseDTO> getProductById(@PathVariable("id") UUID id){
         if(id == null){
@@ -36,33 +34,43 @@ public class ProductController {
         return ResponseEntity.ok(productService.getProduct(id));
     }
 
-    //to create a product
-    @PostMapping("/{id}")
+    @PostMapping
     public ResponseEntity<ProductResponseDTO> createProduct(@RequestBody CreateProductRequestDTO productRequestDTO){
         return ResponseEntity.ok(productService.createProduct(productRequestDTO));
     }
 
-    // to update the product (which is already created)
     @PutMapping("/{id}")
     public ResponseEntity<ProductResponseDTO> updateProduct(@PathVariable("id") UUID id, @RequestBody CreateProductRequestDTO productRequestDTO){
-        return ResponseEntity.ok(productService.updateProduct(productRequestDTO,id));
+        return ResponseEntity.ok(productService.updateProduct(productRequestDTO, id));
     }
 
-    // to delete a product by id
     @DeleteMapping("/{id}")
     public ResponseEntity<Boolean> deleteProduct(@PathVariable("id") UUID id){
-        return ResponseEntity.ok(productService.deleteProduct(id));
+        return ResponseEntity.ok(
+                productService.deleteProduct(id)
+        );
     }
 
-    // to get a product by name
     @GetMapping("/name/{productName}")
     public ResponseEntity<ProductResponseDTO> getProductByProductName(@PathVariable("productName") String productName){
-        return ResponseEntity.ok(productService.getProduct(productName));
+        return ResponseEntity.ok(
+                productService.getProduct(productName)
+        );
     }
 
-    // to get a product by given range
     @GetMapping("/{min}/{max}")
-    public ResponseEntity<ProductResponseDTO> getProductByPriceRange(@PathVariable("min") double minPrice, @PathVariable("max") double maxPrice){
-        return ResponseEntity.ok(productService.getProduct(minPrice,maxPrice));
+    public ResponseEntity getProductByPriceRange(@PathVariable("min") double minPrice, @PathVariable("max") double maxPrice){
+        return ResponseEntity.ok(
+                productService.getProducts(minPrice, maxPrice)
+        );
     }
+
+
+    //used for demo of controller advice
+    /*
+    @GetMapping("/productexception")
+    public ResponseEntity getProductException(){
+        throw new RandomException("Exception from product");
+    }
+     */
 }

@@ -20,10 +20,8 @@ public abstract class BaseModel {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
-
     @CreationTimestamp
-    private Instant createdAt; // Instant - no of seconds / nanoseconds since 1 Jan 1970 UTC
-
+    private Instant createdAt;  // number of seconds/nanoseconds since 1 Jan, 1970 UTC
     @UpdateTimestamp
-    private Instant updateAt; // Instant - no of seconds / nanoseconds since 1 Jan 1970 UTC
+    private Instant updatedAt; // number of seconds/nanoseconds since 1 Jan, 1970 UTC
 }

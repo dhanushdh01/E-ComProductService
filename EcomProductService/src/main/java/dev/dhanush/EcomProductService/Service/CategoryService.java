@@ -8,8 +8,9 @@ import java.util.UUID;
 
 public interface CategoryService {
     CategoryResponseDTO getCategory(UUID categoryId);
-    List<CategoryResponseDTO> getAllCategories;
+    List<CategoryResponseDTO> getAllCategories();
     CategoryResponseDTO createCategory(CreateCategoryRequestDTO categoryRequestDTO);
-    CategoryResponseDTO updateCategory(CreateCategoryRequestDTO categoryRequestDTO ,UUID categoryId);
-    boolean deleteCategory (UUID categoryId);
+    CategoryResponseDTO updateCategory(CreateCategoryRequestDTO categoryRequestDTO, UUID categoryId);
+    boolean deleteCategory(UUID categoryId);
+    double getTotalPriceForCategory(UUID categoryId);
 }

@@ -11,12 +11,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
-
 /**
  *  Cart controller was only created to showcase the use of controller advice, in this code we are not doing
  *  anything related to cart.
  */
-
 @RestController
 public class CartController {
 

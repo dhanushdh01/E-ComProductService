@@ -5,11 +5,10 @@ import jakarta.persistence.ManyToOne;
 import lombok.Getter;
 import lombok.Setter;
 
+@Entity
 @Getter
 @Setter
-@Entity
-public class Product {
-    private int id;
+public class Product extends BaseModel{
     private String title;
     private double price;
     private String description;
