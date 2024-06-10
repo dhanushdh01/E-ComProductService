@@ -1,0 +1,7 @@
+1. Add @EnableCaching annotation to the main class
+2. @Cacheable to the requests, which we want to cache
+
+
+
+1st ->170 ms -> 17/lower ms -> any key \\ DB
+make calls -> DB logs -> redis cache is not working

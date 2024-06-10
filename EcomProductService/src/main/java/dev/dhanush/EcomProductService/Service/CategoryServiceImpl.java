@@ -1,5 +1,6 @@
 package dev.dhanush.EcomProductService.Service;
 
+import dev.dhanush.EcomProductService.Client.FakeStoreClient;
 import dev.dhanush.EcomProductService.DTO.CategoryResponseDTO;
 import dev.dhanush.EcomProductService.DTO.CreateCategoryRequestDTO;
 import dev.dhanush.EcomProductService.Entity.Category;
@@ -19,6 +20,8 @@ public class CategoryServiceImpl implements CategoryService{
 
     @Autowired
     CategoryRepository categoryRepository;
+    @Autowired
+    private FakeStoreClient fakeStoreClient;
 
     @Override
     public CategoryResponseDTO getCategory(UUID categoryId) {
